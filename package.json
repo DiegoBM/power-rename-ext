@@ -225,6 +225,9 @@
         "nsis"
       ]
     },
+    "nsis": {
+      "include": "./release/app/win32/include.nsh"
+    },
     "linux": {
       "target": [
         "AppImage"
@@ -241,7 +244,7 @@
     ],
     "publish": {
       "provider": "github",
-      "owner": "power-rename-ext",
+      "owner": "DiegoBM",
       "repo": "power-rename-ext"
     }
   },

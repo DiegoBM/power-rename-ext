@@ -45,6 +45,10 @@ Once built and packaged, the final executable will accept a list of space-separa
  .\PowerRenameExt.exe "E:\test\test1.txt" "E:\test\test2.js" "E:\test\test3.pdf" "E:\test\test_folder"
 ```
 
+On Windows, you can also open one file or folder (recursively) using the file explorer's context menu integration, by right-clicking on the desired file or folder and choosing the option _"Open with PowerRenameExt"_.
+
+Note than on `Windows 11`, you'll need to select the _"Show more options"_ option first.
+
 ## Install
 
 Clone the repo and install dependencies:
