@@ -99,4 +99,4 @@ Created using the fantastic [Electron React Boilerplate](https://github.com/elec
 
 ## License
 
-MIT © [PowerRenameExt](https://github.com/power-rename-ext)
+MIT © [PowerRenameExt](https://github.com/DiegoBM/power-rename-ext)
