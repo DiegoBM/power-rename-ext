@@ -1,16 +1,17 @@
 # **PowerRenameExt**
 
-PowerRenameExt is a super-powered clone of the Microsoft's [PowerRename](https://learn.microsoft.com/en-us/windows/powertoys/powerrename) tool (part of the [PowerToys](https://learn.microsoft.com/en-us/windows/powertoys) suite), with extra added functionality such as the ability to use functions in order to compute the replacements, which in turn enables the user to process more advanced file renaming and indexing operations.
+PowerRenameExt is a cross-platform bulk renaming tool conceived as a powered-up version of Microsoft's [PowerRename](https://learn.microsoft.com/en-us/windows/powertoys/powerrename) tool (part of the [PowerToys](https://learn.microsoft.com/en-us/windows/powertoys) suite), with extra added functionality such as the ability to use functions in order to compute the replacements, which in turn enables the user to process more advanced file renaming and indexing operations.
 
 It features:
 
-- Regular expression replacement
-- Match one or all occurrences
-- Case sensitive search
-- Apply to filenames, extensions or both
-- Include/Exclude files, folders and subfolders
-- Use a function to process a replacement for a given search term
-- Use a function to process a replacement instead of a search term (global function)
+- Regular expression replacement.
+- Match one or all occurrences.
+- Case sensitive search.
+- Apply to filenames, extensions or both.
+- Include/Exclude files, folders and subfolders.
+- Use a function to process a replacement for a given search term.
+- Use a function to process a replacement instead of a search term (global function).
+- Dark/Light theme as stablished in the system settings.
 
 ### Standard replacement
 

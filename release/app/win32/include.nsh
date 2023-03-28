@@ -6,3 +6,8 @@
   WriteRegStr HKCR "Directory\shell\PowerRenameExt" "Icon" "$appExe"
   WriteRegStr HKCR "Directory\shell\PowerRenameExt\Command" "" '"$appExe" "%1"'
 !macroend
+
+!macro customUnInstall
+  DeleteRegKey HKCR "*\shell\PowerRenameExt"
+  DeleteRegKey HKCR "Directory\shell\PowerRenameExt"
+!macroend
