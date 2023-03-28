@@ -1,0 +1,64 @@
+/*
+ * @NOTE: Prepend a `~` to css file paths that are in your node_modules
+ *        See https://github.com/webpack-contrib/sass-loader#imports
+ */
+
+:root {
+  --nice-gradient: linear-gradient(
+    200.96deg,
+    #fedc2a -29.09%,
+    #dd5789 51.77%,
+    #7a2c9e 129.35%
+  );
+  --gap: 0.7rem;
+  --title-height: 30px;
+  --content-height: calc(100vh - var(--title-height));
+  --grid-height: calc(var(--content-height) - (2 * var(--gap)));
+}
+
+html, body, #root {
+  height: 100vh;
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+
+main{
+  display: grid;
+  /* grid-template-columns: minmax(300px, 2fr) 5fr; */
+  grid-template-columns: 350px 1fr;
+  grid-template-rows: 1fr;
+  padding: var(--gap);
+  gap: var(--gap);
+  height: var(--content-height);
+  overflow: hidden;
+}
+
+/* aside {
+  background-color: #7a2c9e;
+} */
+/* section {
+  background-color: #dd5789;
+  background: var(--nice-gradient);
+} */
+
+::-webkit-scrollbar {
+  /* right: 0; */
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #999;
+  border-radius: 8px;
+  /* width: 5px;
+  height: 5px; */
+}
+
+/* ::-webkit-scrollbar-track {
+  background-color: transparent;
+} */
+
+.MuiBackdrop-root.MuiModal-backdrop {
+  background-color: inherit;
+}

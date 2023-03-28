@@ -1,0 +1,18 @@
+{
+  "name": "power-rename-ext",
+  "version": "0.0.1",
+  "description": "A powered-up version of Microsoft's PowerRename tool part of the PowerToys suite",
+  "license": "MIT",
+  "author": {
+    "name": "Diego de Blas Mateo",
+    "email": "1613216+DiegoBM@users.noreply.github.com",
+    "url": "https://github.com/power-rename-ext"
+  },
+  "main": "./dist/main/main.js",
+  "scripts": {
+    "rebuild": "node -r ts-node/register ../../.erb/scripts/electron-rebuild.js",
+    "postinstall": "npm run rebuild && npm run link-modules",
+    "link-modules": "node -r ts-node/register ../../.erb/scripts/link-modules.ts"
+  },
+  "dependencies": {}
+}

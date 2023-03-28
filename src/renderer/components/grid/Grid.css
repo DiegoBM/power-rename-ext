@@ -1,0 +1,23 @@
+.truncate {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.result {
+  font-family: inherit;
+}
+
+.rename {
+  color: hsl(219deg, 100%, 50%);
+}
+
+.rename.dark {
+  color: hsl(187deg, 100%, 77%);
+}
+
+.flex-center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
