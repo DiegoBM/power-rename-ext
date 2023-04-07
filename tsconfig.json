@@ -15,11 +15,12 @@
     "allowJs": true,
     "outDir": ".erb/dll",
     "paths": {
-      "@common/*": ["common/*"],
-      "@hooks/*": ["renderer/hooks/*"],
-      "@components/*": ["renderer/components/*"],
-      "@screens/*": ["renderer/screens/*"],
       "@assets/*": ["../assets/*"],
+      "@common/*": ["common/*"],
+      "@components/*": ["renderer/components/*"],
+      "@hooks/*": ["renderer/hooks/*"],
+      "@mocks/*": ["renderer/mocks/*"],
+      "@screens/*": ["renderer/screens/*"],
     }
   },
   "exclude": ["test", "release/build", "release/app/dist", ".erb/dll"],

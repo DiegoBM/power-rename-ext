@@ -64,6 +64,8 @@ npm install
 
 ## Starting Development
 
+Create a new .env file (read below)
+
 Start the app in the `dev` environment:
 
 ```bash
@@ -96,7 +98,9 @@ npm run package
 
 ## Notes
 
-Being an Electron application, and using only platform agnostic file-system operations, the final result should work accross all desktop platforms, but please bear in mind that it has only been tested in Windows, since I don't own a Mac to test on.
+Being an Electron application, and using only platform agnostic file-system operations, the final result should work accross all desktop platforms, but please bear in mind that it has only been tested in Windows and Linux, since I don't own a Mac to test on.
+
+Latest React dev tools extension is [not supported](https://github.com/facebook/react/issues/25843#issuecomment-1486701884) by the current version of electron at the time of release. In order to downgrade the extension please follow the instructions at this [link](https://polypane.app/docs/downgrading-react-devtools/).
 
 ## Credits
 

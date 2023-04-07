@@ -1,7 +1,14 @@
-import { useState, useMemo, createContext, type ReactNode } from 'react';
+import {
+  useState,
+  useMemo,
+  createContext,
+  useContext,
+  type ReactNode,
+} from 'react';
 
-type ApplicationSettings = {
+export type ApplicationSettings = {
   isProduction: boolean;
+  platform: string;
 };
 
 type ApplicationSettingsContext = {
@@ -9,8 +16,9 @@ type ApplicationSettingsContext = {
   setSettings: React.Dispatch<React.SetStateAction<ApplicationSettings>>;
 };
 
-export const defaultSettings = {
+const defaultSettings: ApplicationSettings = {
   isProduction: window.electron.ipcRenderer.isProduction(),
+  platform: window.electron.ipcRenderer.platform(),
 };
 
 const defaultContext: ApplicationSettingsContext = {
@@ -25,6 +33,18 @@ type ApplicationSettingsProviderProps = {
   children: ReactNode;
   initialSettings?: ApplicationSettings;
 };
+
+export function useApplicationSettings() {
+  const context = useContext(applicationSettingsContext);
+
+  if (!context) {
+    throw new Error(
+      'useApplicationSettings should be used within an ApplicationSettingsProvider'
+    );
+  }
+
+  return context;
+}
 
 export default function ApplicationSettingsProvider({
   children,

@@ -80,7 +80,6 @@ export default function Grid({
   rowSelection,
   onRowSelectionChange,
 }: GridProps): JSX.Element {
-  console.log('rendering Grid');
   const [currentFilter, setCurrentFilter] =
     useState<FilterValue>('show-all-files');
 

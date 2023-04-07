@@ -9,6 +9,9 @@ const electronHandler = {
     isProduction() {
       return process.env.NODE_ENV === 'production';
     },
+    platform() {
+      return process.platform;
+    },
     sendMessage(channel: Channels, message: IPCMainMessage) {
       ipcRenderer.send(channel, message);
     },

@@ -1,0 +1,12 @@
+Object.defineProperty(window, 'electron', {
+  writable: true,
+  value: {
+    ipcRenderer: {
+      isProduction: jest.fn(),
+      platform: jest.fn(),
+      sendMessage: jest.fn(),
+      on: jest.fn(),
+      once: jest.fn(),
+    },
+  },
+});

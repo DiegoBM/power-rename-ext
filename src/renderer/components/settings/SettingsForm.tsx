@@ -23,8 +23,6 @@ export default function SettingsForm({
   onSearchChange,
   onReplaceChange,
 }: SettingsFormProps): JSX.Element {
-  console.log('rendering Settings');
-
   return (
     <Stack gap={2} sx={{ height: '100%' }} justifyContent="space-between">
       <SearchSettingsForm

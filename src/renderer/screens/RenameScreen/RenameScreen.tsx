@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 // Material UI
 import Stack from '@mui/material/Stack';
 // Material React Table
@@ -45,7 +45,6 @@ const options: SplitButtonOption[] = [
 ];
 
 export default function RenameScreen() {
-  console.log('rendering Renamer');
   const [searchSettings, setSearchSettings] = useState<SearchSettings>(
     defaultSearchSettings
   );
@@ -83,11 +82,10 @@ export default function RenameScreen() {
     setMainData({ ...mainData, renameResults: null });
   };
 
-  const canRename =
-    entries.length &&
-    searchSettings.input &&
-    Object.keys(rowSelection).length > 0 &&
-    (replaceSettings.input || searchSettings.useFunction);
+  const canRename = useMemo<boolean>(
+    () => canEnableApply(entries, rowSelection),
+    [entries, rowSelection]
+  );
 
   return (
     <>
@@ -170,4 +168,18 @@ function computeRenameOperations(
   });
 
   return result;
+}
+
+function canEnableApply(
+  entries: RenameEntry[],
+  selection: MRT_RowSelectionState
+): boolean {
+  for (const entry of entries) {
+    if (entry.rename && selection[entry.fullPath]) return true;
+
+    if (entry.subEntries && canEnableApply(entry.subEntries, selection))
+      return true;
+  }
+
+  return false;
 }

@@ -7,11 +7,11 @@ import CheckBox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
 import { useDebounceValue } from '@hooks/useDebounceValue';
-import FunctionEditorDialog from './FunctionEditorDialog';
+import FunctionEditorDialog from '@components/functions/FunctionEditorDialog';
 
 // import './SearchSettingsForm.css';
 
-const defaultFunction = `function (search) {\n\treturn 'replace';\n}`;
+const defaultFunction = `function (search) {\n  return 'replace';\n}`;
 
 export type SearchSettings = {
   input: string;
@@ -31,13 +31,15 @@ export default function SearchSettingsForm({
   onSearchChange,
 }: SearchSettingsFormProps): JSX.Element {
   const [modalOpen, setModalOpen] = useState(false);
-  const [searchInput, setSearchInput] = useDebounceValue('', (newValue) =>
-    onSearchChange({ ...searchSettings, input: newValue })
+  const [searchInput, setSearchInput] = useDebounceValue(
+    searchSettings.input,
+    (newValue) => onSearchChange({ ...searchSettings, input: newValue })
   );
 
   return (
     <Box
       component="form"
+      aria-label="Search Settings"
       noValidate
       autoComplete="off"
       sx={{ flexGrow: searchSettings.useFunction ? 1 : 0 }}

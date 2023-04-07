@@ -39,6 +39,7 @@ export default function FilterMenu({
     <>
       <Button
         id="menu-button"
+        aria-label="filter"
         size="small"
         aria-controls={open ? 'filter-menu' : undefined}
         aria-haspopup="true"

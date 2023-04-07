@@ -47,7 +47,7 @@ export function useMainData(): [MainData, Dispatch<SetStateAction<MainData>>] {
             });
             break;
           case 'rename-results':
-            // When we the rename operation finishes we receive a new set of rename Results,
+            // When the rename operation finishes we receive a new set of rename Results,
             // so we need to create a new set of scanPaths in case that any of the
             // original arguments were modified during the rename operation
             const scanPaths = recreateScanPaths(

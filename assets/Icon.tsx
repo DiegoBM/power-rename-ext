@@ -1,6 +1,10 @@
 import * as React from 'react';
 
-const SvgComponent = (props: React.SVGProps<SVGSVGElement>) => (
+type SvgComponentProps = React.SVGProps<SVGSVGElement> & {
+  title?: string;
+};
+
+const SvgComponent = (props: SvgComponentProps) => (
   <svg
     viewBox="0 0 400 400"
     xmlns="http://www.w3.org/2000/svg"
@@ -14,7 +18,14 @@ const SvgComponent = (props: React.SVGProps<SVGSVGElement>) => (
       strokeMiterlimit: 1.5,
     }}
     {...props}
+    role="img"
+    aria-describedby={
+      props.title ? `svg-component-title-id-${props.title}` : undefined
+    }
   >
+    {props.title && (
+      <title id={`svg-component-title-id-${props.title}`}>{props.title}</title>
+    )}
     <use xlinkHref="#a" x={199} y={69} width={201} height={261} />
     <use xlinkHref="#b" x={199} y={69} width={201} height={261} />
     <use xlinkHref="#c" x={199} y={69} width={201} height={261} />

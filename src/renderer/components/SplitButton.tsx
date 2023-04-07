@@ -28,7 +28,7 @@ export default function SplitButton({
   current,
   onButtonClick,
   onOptionSelect,
-  sx,
+  sx = {},
   clickOnSelect = true,
   disabled = false,
 }: SplitButtonProps) {
@@ -73,7 +73,7 @@ export default function SplitButton({
           size="small"
           aria-controls={open ? 'split-button-menu' : undefined}
           aria-expanded={open ? 'true' : undefined}
-          aria-label="select merge strategy"
+          aria-label="select apply strategy"
           aria-haspopup="menu"
           onClick={handleToggle}
         >
@@ -101,10 +101,9 @@ export default function SplitButton({
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList id="split-button-menu" autoFocusItem>
-                  {options.map((option, index) => (
+                  {options.map((option) => (
                     <MenuItem
                       key={option.value}
-                      // disabled={index === 2}
                       selected={option.value === current.value}
                       onClick={() => handleMenuItemClick(option)}
                     >

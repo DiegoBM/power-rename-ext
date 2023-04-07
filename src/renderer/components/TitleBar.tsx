@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useTheme, styled } from '@mui/material/styles';
 
 import { windowActionMessage } from '@common/ipc';
+import { useApplicationSettings } from '../ApplicationSettingsContext';
 import Icon from '@assets/Icon';
 
 const StyledHeader = styled('header')(({ theme }) => ({
@@ -22,6 +23,10 @@ const StyledDiv = styled('div')({
 export default function TitleBar() {
   const [focus, setFocus] = useState(true);
   const theme = useTheme();
+
+  const {
+    settings: { platform },
+  } = useApplicationSettings();
 
   useEffect(() => {
     const handleFocus = () => {
@@ -53,12 +58,23 @@ export default function TitleBar() {
     );
   }, [theme]);
 
+  // This should theoretically never change, still a side effect though
+  useEffect(() => {
+    if (platform === 'linux') {
+      document.documentElement.style.setProperty('--title-height', '0px');
+    } else {
+      document.documentElement.style.setProperty('--title-height', '30px');
+    }
+  }, [platform]);
+
   const disabledColor = { color: theme.palette.text.disabled };
+
+  if (platform === 'linux') return null;
 
   return (
     <StyledHeader>
-      <Icon width={24} style={{ marginLeft: '10px' }} />
-      <StyledDiv sx={focus ? {} : disabledColor}>PowerRenameEx</StyledDiv>
+      <Icon title="logo" width={24} style={{ marginLeft: '10px' }} />
+      <StyledDiv sx={focus ? {} : disabledColor}>PowerRenameExt</StyledDiv>
     </StyledHeader>
   );
 }
