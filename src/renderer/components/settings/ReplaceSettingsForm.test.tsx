@@ -20,7 +20,7 @@ const defaultReplaceSettings: ReplaceSettings = {
 };
 
 describe('ReplaceSettingsForm', () => {
-  it('should render the replace settings form', () => {
+  test('renders the replace settings form', () => {
     render(
       <ReplaceSettingsForm
         replaceSettings={defaultReplaceSettings}
@@ -50,7 +50,7 @@ describe('ReplaceSettingsForm', () => {
     ).toBeInTheDocument();
   });
 
-  it('should take the default values for the inputs from the passed "replaceSettings" prop', () => {
+  test('takes the default values for the inputs from the passed "replaceSettings" prop', () => {
     render(
       <ReplaceSettingsForm
         replaceSettings={{
@@ -88,7 +88,7 @@ describe('ReplaceSettingsForm', () => {
     ).toBeInTheDocument();
   });
 
-  it('should call to "onReplaceChange" when the user modifies the settings', async () => {
+  test('calls "onReplaceChange" when the user modifies the settings', async () => {
     const handleReplaceChange = jest.fn();
     render(
       <ReplaceSettingsForm
@@ -101,16 +101,13 @@ describe('ReplaceSettingsForm', () => {
       screen.getByRole('button', { name: /include files/i, pressed: false })
     );
     expect(handleReplaceChange).toHaveBeenCalledWith(
-      expect.objectContaining({ ...defaultReplaceSettings, includeFiles: true })
+      expect.objectContaining({ includeFiles: true })
     );
     await userEvent.click(
       screen.getByRole('button', { name: /include folders/i, pressed: false })
     );
     expect(handleReplaceChange).toHaveBeenCalledWith(
-      expect.objectContaining({
-        ...defaultReplaceSettings,
-        includeFolders: true,
-      })
+      expect.objectContaining({ includeFolders: true })
     );
     await userEvent.click(
       screen.getByRole('button', {
@@ -119,18 +116,15 @@ describe('ReplaceSettingsForm', () => {
       })
     );
     expect(handleReplaceChange).toHaveBeenCalledWith(
-      expect.objectContaining({
-        ...defaultReplaceSettings,
-        includeSubfolders: true,
-      })
+      expect.objectContaining({ includeSubfolders: true })
     );
     await chooseOption(2);
     expect(handleReplaceChange).toHaveBeenCalledWith(
-      expect.objectContaining({ ...defaultReplaceSettings, scope: 'ext' })
+      expect.objectContaining({ scope: 'ext' })
     );
   });
 
-  it('should additionally clear the textbox when the "use a function" checkbox gets enabled', async () => {
+  test('will additionally clear the textbox when the "use a function" checkbox gets enabled', async () => {
     const handleReplaceChange = jest.fn();
     render(
       <ReplaceSettingsForm
@@ -145,14 +139,13 @@ describe('ReplaceSettingsForm', () => {
     );
     expect(handleReplaceChange).toHaveBeenCalledWith(
       expect.objectContaining({
-        ...defaultReplaceSettings,
         useFunction: true,
         input: '',
       })
     );
   });
 
-  it('should debounce the call to "onReplaceChange" when the user types on the textbox', async () => {
+  test('debounces the call to "onReplaceChange" when the user types on the textbox', async () => {
     const handleReplaceChange = jest.fn();
     render(
       <ReplaceSettingsForm
@@ -173,7 +166,7 @@ describe('ReplaceSettingsForm', () => {
     );
   });
 
-  it('should hide the textbox and display the "Edit function" button and the "use a function" checkbox if "useFunction" is true', () => {
+  test('hides the textbox and display the "Edit function" button and the "use a function" checkbox if "useFunction" is true', () => {
     render(
       <ReplaceSettingsForm
         replaceSettings={{ ...defaultReplaceSettings, useFunction: true }}
@@ -192,7 +185,7 @@ describe('ReplaceSettingsForm', () => {
     ).not.toBeInTheDocument();
   });
 
-  it('should display a modal to edit the function if "useFunction" is true and the "Edit function" button is clicked', async () => {
+  test('displays a modal to edit the function if "useFunction" is true and the "Edit function" button is clicked', async () => {
     render(
       <ReplaceSettingsForm
         replaceSettings={{ ...defaultReplaceSettings, useFunction: true }}
@@ -207,7 +200,7 @@ describe('ReplaceSettingsForm', () => {
     expect(screen.queryByRole('dialog')).toBeInTheDocument();
   });
 
-  it('should call "onReplaceChange" when the user confirms the function', async () => {
+  test('calls "onReplaceChange" when the user confirms the function', async () => {
     const handleReplaceChange = jest.fn();
     render(
       <ReplaceSettingsForm

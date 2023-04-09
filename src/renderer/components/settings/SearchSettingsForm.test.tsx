@@ -18,7 +18,7 @@ const defaultSearchSettings: SearchSettings = {
 };
 
 describe('SearchSettingsForm', () => {
-  it('should render the search settings form', () => {
+  test('renders the search settings form', () => {
     render(
       <SearchSettingsForm
         searchSettings={defaultSearchSettings}
@@ -44,7 +44,7 @@ describe('SearchSettingsForm', () => {
     ).toBeInTheDocument();
   });
 
-  it('should take the default values for the inputs from the passed "searchSettings" prop', () => {
+  test('takes the default values for the inputs from the passed "searchSettings" prop', () => {
     render(
       <SearchSettingsForm
         searchSettings={{
@@ -73,7 +73,7 @@ describe('SearchSettingsForm', () => {
     ).toBeChecked();
   });
 
-  it('should call to "onSearchChange" when the user modifies the settings', async () => {
+  test('calls "onSearchChange" when the user modifies the settings', async () => {
     const handleSearchChange = jest.fn();
     render(
       <SearchSettingsForm
@@ -86,26 +86,23 @@ describe('SearchSettingsForm', () => {
       screen.getByRole('checkbox', { name: /Use regular expressions/i })
     );
     expect(handleSearchChange).toHaveBeenCalledWith(
-      expect.objectContaining({ ...defaultSearchSettings, isRegex: true })
+      expect.objectContaining({ isRegex: true })
     );
     await userEvent.click(
       screen.getByRole('checkbox', { name: /Matches all occurrences/i })
     );
     expect(handleSearchChange).toHaveBeenCalledWith(
-      expect.objectContaining({ ...defaultSearchSettings, matchesAll: true })
+      expect.objectContaining({ matchesAll: true })
     );
     await userEvent.click(
       screen.getByRole('checkbox', { name: /Case sensitive/i })
     );
     expect(handleSearchChange).toHaveBeenCalledWith(
-      expect.objectContaining({
-        ...defaultSearchSettings,
-        isCaseSensitive: true,
-      })
+      expect.objectContaining({ isCaseSensitive: true })
     );
   });
 
-  it('should additionally clear the textbox when the "use a function" checkbox gets enabled', async () => {
+  test('will additionally clear the textbox when the "use a function" checkbox gets enabled', async () => {
     const handleSearchChange = jest.fn();
     render(
       <SearchSettingsForm
@@ -119,15 +116,11 @@ describe('SearchSettingsForm', () => {
       screen.getByRole('checkbox', { name: /Use a function/i })
     );
     expect(handleSearchChange).toHaveBeenCalledWith(
-      expect.objectContaining({
-        ...defaultSearchSettings,
-        useFunction: true,
-        input: '',
-      })
+      expect.objectContaining({ useFunction: true, input: '' })
     );
   });
 
-  it('should debounce the call to "onSearchChange" when the user types on the textbox', async () => {
+  test('debounces the call to "onSearchChange" when the user types on the textbox', async () => {
     const handleSearchChange = jest.fn();
     render(
       <SearchSettingsForm
@@ -148,7 +141,7 @@ describe('SearchSettingsForm', () => {
     );
   });
 
-  it('should only render the "Edit function" button and the "use a function" checkbox if "useFunction" is true', () => {
+  test('only renders the "Edit function" button and the "use a function" checkbox if "useFunction" is true', () => {
     render(
       <SearchSettingsForm
         searchSettings={{ ...defaultSearchSettings, useFunction: true }}
@@ -176,7 +169,7 @@ describe('SearchSettingsForm', () => {
     ).not.toBeInTheDocument();
   });
 
-  it('should display a modal to edit the function if "useFunction" is true and the "Edit function" button is clicked', async () => {
+  test('displays a modal to edit the function if "useFunction" is true and the "Edit function" button is clicked', async () => {
     render(
       <SearchSettingsForm
         searchSettings={{ ...defaultSearchSettings, useFunction: true }}
@@ -191,7 +184,7 @@ describe('SearchSettingsForm', () => {
     expect(screen.queryByRole('dialog')).toBeInTheDocument();
   });
 
-  it('should call "onSearchChange" when the user confirms the function', async () => {
+  test('calls "onSearchChange" when the user confirms the function', async () => {
     const handleSearchChange = jest.fn();
     render(
       <SearchSettingsForm

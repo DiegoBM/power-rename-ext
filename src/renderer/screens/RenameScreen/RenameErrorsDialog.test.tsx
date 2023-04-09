@@ -19,7 +19,7 @@ const testResults = [
 ];
 
 describe('RenameErrorsDialog', () => {
-  it('should render a dialog when explicitly opened with no results', () => {
+  test('renders a dialog when explicitly opened with no results', () => {
     const { rerender } = render(
       <RenameErrorsDialog
         results={[]}
@@ -48,7 +48,7 @@ describe('RenameErrorsDialog', () => {
     ).toBeInTheDocument();
   });
 
-  it('should display as many results as the entries passed in the "results" prop', () => {
+  test('displays as many results as the entries passed in the "results" prop', () => {
     render(
       <RenameErrorsDialog
         results={testResults}
@@ -62,7 +62,7 @@ describe('RenameErrorsDialog', () => {
     expect(screen.getAllByRole('row')).toHaveLength(testResults.length + 1);
   });
 
-  it('should close the dialog with the "confirmButton" close reason when clicking the Confirm button', async () => {
+  test('closes the dialog with the "confirmButton" close reason when clicking the Confirm button', async () => {
     const handleClose = jest.fn();
 
     render(
@@ -82,7 +82,7 @@ describe('RenameErrorsDialog', () => {
     );
   });
 
-  it('should notify the parent when clicking the Confirm button', async () => {
+  test('notifies the parent when clicking the Confirm button', async () => {
     const handleValueConfirmed = jest.fn();
 
     render(
@@ -100,8 +100,7 @@ describe('RenameErrorsDialog', () => {
     expect(handleValueConfirmed).toHaveBeenCalled();
   });
 
-  //---------------------------------------
-  it('should not dismiss the dialog when clicking outside the dialog or by typing the escape key, when "forceConfirm" is true', async () => {
+  test('will not dismiss the dialog when clicking outside the dialog or by typing the escape key, when "forceConfirm" is true', async () => {
     const handleClose = jest.fn();
     const { rerender } = render(
       <RenameErrorsDialog
@@ -132,9 +131,5 @@ describe('RenameErrorsDialog', () => {
     expect(handleClose).not.toHaveBeenCalled();
     await userEvent.click(screen.getAllByRole('presentation')[1]);
     expect(handleClose).not.toHaveBeenCalled();
-    // await userEvent.click(screen.getByRole('button', { name: /confirm/i }));
-    // await waitFor(() => {
-    //   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-    // });
   });
 });

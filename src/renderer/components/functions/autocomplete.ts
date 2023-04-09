@@ -25,7 +25,7 @@ export function autocomplete(completions: Completion[] = []): Extension {
 
           let options = matches.reduce<Completion[]>(
             (acc, curr) =>
-              acc.concat((curr(context) as CompletionResult).options),
+              acc.concat((curr(context) as CompletionResult)?.options ?? []),
             []
           );
           return { ...matches[0](context), options } as CompletionResult;

@@ -49,7 +49,9 @@
     "start:main": "cross-env NODE_ENV=development electronmon -r ts-node/register/transpile-only .",
     "start:preload": "cross-env NODE_ENV=development TS_NODE_TRANSPILE_ONLY=true webpack --config ./.erb/configs/webpack.config.preload.dev.ts",
     "start:renderer": "env-cmd cross-env NODE_ENV=development TS_NODE_TRANSPILE_ONLY=true webpack serve --config ./.erb/configs/webpack.config.renderer.dev.ts",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "e2e": "npm run build && npm run e2e:run",
+    "e2e:run": "cross-env PLAYWRIGHT_TEST=true playwright test"
   },
   "browserslist": [],
   "prettier": {
@@ -97,6 +99,7 @@
       "url": "http://localhost/"
     },
     "testPathIgnorePatterns": [
+      "e2e",
       "release/app/dist",
       ".erb/dll"
     ],
@@ -124,6 +127,7 @@
   "devDependencies": {
     "@electron/notarize": "^1.2.3",
     "@electron/rebuild": "^3.2.10",
+    "@playwright/test": "^1.32.2",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.10",
     "@svgr/webpack": "^6.5.1",
     "@teamsupercell/typings-for-css-modules-loader": "^2.5.2",

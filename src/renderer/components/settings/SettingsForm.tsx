@@ -13,8 +13,8 @@ export type { ReplaceSettings } from './ReplaceSettingsForm';
 type SettingsFormProps = {
   searchSettings: SearchSettings;
   replaceSettings: ReplaceSettings;
-  onSearchChange: (newSearchSettings: SearchSettings) => void;
-  onReplaceChange: (newReplaceSettings: ReplaceSettings) => void;
+  onSearchChange: (changes: Partial<SearchSettings>) => void;
+  onReplaceChange: (changes: Partial<ReplaceSettings>) => void;
 };
 
 export default function SettingsForm({

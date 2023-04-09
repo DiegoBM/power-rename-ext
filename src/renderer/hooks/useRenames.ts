@@ -249,7 +249,7 @@ function createContext(
 }
 
 function createFunction(code: string, context: EntryStats | {} = {}) {
-  const setup = `'use strict'; const console = {}, window = {}, self = {}, top = {}, document = {}, location = {}, navigation = {}, navigator = {}, parent = {}, localStorage = {}, sessionStorage = {}, indexedDB = {}, open = {}, close = {}, openDatabase = {}, fetch = {}, Storage = {}, cookieStore = {}, CookieStore = {}, alert = {};`;
+  const setup = `'use strict'; var console = {}, window = {}, self = {}, top = {}, document = {}, location = {}, navigation = {}, navigator = {}, parent = {}, localStorage = {}, sessionStorage = {}, indexedDB = {}, open = {}, close = {}, openDatabase = {}, fetch = {}, Storage = {}, cookieStore = {}, CookieStore = {}, alert = {};`;
 
   const newCode = `return function() {${setup} return (${code}).bind(this);}.bind(this)()`;
 

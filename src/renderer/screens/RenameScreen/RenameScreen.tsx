@@ -96,18 +96,14 @@ export default function RenameScreen() {
             <SettingsForm
               searchSettings={searchSettings}
               replaceSettings={replaceSettings}
-              onSearchChange={(newSearchSettings) =>
-                setSearchSettings(newSearchSettings)
+              onSearchChange={(changes) =>
+                setSearchSettings((settings) => ({ ...settings, ...changes }))
               }
-              onReplaceChange={(newReplaceSettings) =>
-                setReplaceSettings(newReplaceSettings)
+              onReplaceChange={(changes) =>
+                setReplaceSettings((settings) => ({ ...settings, ...changes }))
               }
             />
-            <Stack
-              direction="row"
-              // sx={{ width: '100%' }}
-              justifyContent="flex-end"
-            >
+            <Stack direction="row" justifyContent="flex-end">
               <SplitButton
                 disabled={!canRename}
                 options={options}

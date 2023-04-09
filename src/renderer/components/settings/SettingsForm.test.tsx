@@ -23,7 +23,7 @@ const defaultReplaceSettings: ReplaceSettings = {
 };
 
 describe('SettingsForm', () => {
-  it('should render both search and replace settings forms', async () => {
+  test('renders both search and replace settings forms', async () => {
     render(
       <SettingsForm
         searchSettings={defaultSearchSettings}
@@ -38,7 +38,7 @@ describe('SettingsForm', () => {
     expect(screen.queryAllByRole('form')).toHaveLength(2);
   });
 
-  it('should not render the replace settings form is useFuntion is true in searchSettings', async () => {
+  test('will not render the replace settings form is useFuntion is true in searchSettings', async () => {
     render(
       <SettingsForm
         searchSettings={{ ...defaultSearchSettings, useFunction: true }}

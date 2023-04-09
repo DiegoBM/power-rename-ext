@@ -8,7 +8,7 @@ import FunctionEditorDialog from '@components/functions/FunctionEditorDialog';
 import userEvent from '@testing-library/user-event';
 
 describe('FunctionEditorDialog', () => {
-  it('should not render the dialog until explicitly open', () => {
+  test('will not render the dialog until explicitly open', () => {
     render(
       <FunctionEditorDialog
         initialValue=""
@@ -26,7 +26,7 @@ describe('FunctionEditorDialog', () => {
     ).not.toBeInTheDocument();
   });
 
-  it('should render a text editor with the passed initialValue', () => {
+  test('renders a text editor with the passed initialValue', () => {
     const initialValue = 'testFunction';
     render(
       <FunctionEditorDialog
@@ -46,7 +46,7 @@ describe('FunctionEditorDialog', () => {
     expect(screen.queryByText(initialValue)).toBeInTheDocument();
   });
 
-  it('should close the dialog with the cancelButton reason when clicking the Cancel button', async () => {
+  test('closes the dialog with the cancelButton reason when clicking the Cancel button', async () => {
     const handleClose = jest.fn();
 
     render(
@@ -63,7 +63,7 @@ describe('FunctionEditorDialog', () => {
     expect(handleClose).toHaveBeenCalledWith(expect.anything(), 'cancelButton');
   });
 
-  it('should close the dialog with the confirmButton reason when clicking the Confirm button', async () => {
+  test('closes the dialog with the confirmButton reason when clicking the Confirm button', async () => {
     const handleClose = jest.fn();
 
     render(
@@ -83,7 +83,7 @@ describe('FunctionEditorDialog', () => {
     );
   });
 
-  it('should return the initial value when the confirm button is clicked and the input has not been editted', async () => {
+  test('returns the initial value when the confirm button is clicked and the input has not been editted', async () => {
     const initialValue = 'test';
     const handleValueConfirmed = jest.fn();
 
@@ -101,7 +101,7 @@ describe('FunctionEditorDialog', () => {
     expect(handleValueConfirmed).toHaveBeenCalledWith(initialValue);
   });
 
-  it('should allow the user to introduce a new function', async () => {
+  test('allows the user to introduce a new function', async () => {
     const newFunction = 'newFunction';
     const handleValueConfirmed = jest.fn();
 

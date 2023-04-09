@@ -23,7 +23,7 @@ export type SearchSettings = {
 
 type SearchSettingsFormProps = {
   searchSettings: SearchSettings;
-  onSearchChange: (newSearchSettings: SearchSettings) => void;
+  onSearchChange: (changes: Partial<SearchSettings>) => void;
 };
 
 export default function SearchSettingsForm({
@@ -33,7 +33,7 @@ export default function SearchSettingsForm({
   const [modalOpen, setModalOpen] = useState(false);
   const [searchInput, setSearchInput] = useDebounceValue(
     searchSettings.input,
-    (newValue) => onSearchChange({ ...searchSettings, input: newValue })
+    (newValue) => onSearchChange({ input: newValue })
   );
 
   return (
@@ -53,9 +53,7 @@ export default function SearchSettingsForm({
             open={modalOpen}
             initialValue={searchSettings.input || defaultFunction}
             onClose={() => setModalOpen(false)}
-            onValueConfirmed={(newValue) =>
-              onSearchChange({ ...searchSettings, input: newValue })
-            }
+            onValueConfirmed={(newValue) => onSearchChange({ input: newValue })}
           />
         </>
       ) : (
@@ -80,7 +78,6 @@ export default function SearchSettingsForm({
             checked={searchSettings.useFunction}
             onChange={(event) => {
               onSearchChange({
-                ...searchSettings,
                 useFunction: event.target.checked,
                 input: '',
               });
@@ -99,7 +96,6 @@ export default function SearchSettingsForm({
                 // sx={{ pb: 0.5, pt: 0.5 }}
                 onChange={(event) =>
                   onSearchChange({
-                    ...searchSettings,
                     isRegex: event.target.checked,
                   })
                 }
@@ -114,7 +110,6 @@ export default function SearchSettingsForm({
                 // sx={{ pb: 0.5, pt: 0.5 }}
                 onChange={(event) =>
                   onSearchChange({
-                    ...searchSettings,
                     matchesAll: event.target.checked,
                   })
                 }
@@ -129,7 +124,6 @@ export default function SearchSettingsForm({
                 // sx={{ pb: 0.5, pt: 0.5 }}
                 onChange={(event) =>
                   onSearchChange({
-                    ...searchSettings,
                     isCaseSensitive: event.target.checked,
                   })
                 }

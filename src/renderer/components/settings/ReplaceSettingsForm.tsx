@@ -44,7 +44,7 @@ export type ReplaceSettings = {
 
 type ReplaceSettingsFormProps = {
   replaceSettings: ReplaceSettings;
-  onReplaceChange: (newReplaceSettings: ReplaceSettings) => void;
+  onReplaceChange: (changes: Partial<ReplaceSettings>) => void;
 };
 
 export default function ReplaceSettingsForm({
@@ -55,7 +55,7 @@ export default function ReplaceSettingsForm({
 
   const [replaceInput, setReplaceInput] = useDebounceValue(
     replaceSettings.input,
-    (newValue) => onReplaceChange({ ...replaceSettings, input: newValue })
+    (newValue) => onReplaceChange({ input: newValue })
   );
 
   return (
@@ -76,7 +76,7 @@ export default function ReplaceSettingsForm({
             initialValue={replaceSettings.input || defaultFunction}
             onClose={() => setModalOpen(false)}
             onValueConfirmed={(newValue) =>
-              onReplaceChange({ ...replaceSettings, input: newValue })
+              onReplaceChange({ input: newValue })
             }
           />
         </>
@@ -99,7 +99,6 @@ export default function ReplaceSettingsForm({
             checked={replaceSettings.useFunction}
             onChange={(event) => {
               onReplaceChange({
-                ...replaceSettings,
                 useFunction: event.target.checked,
                 input: '',
               });
@@ -119,7 +118,6 @@ export default function ReplaceSettingsForm({
             label="Apply to"
             onChange={(event) =>
               onReplaceChange({
-                ...replaceSettings,
                 scope: event.target.value as Scope,
               })
             }
@@ -139,7 +137,6 @@ export default function ReplaceSettingsForm({
               selected={replaceSettings.includeFiles}
               onChange={() =>
                 onReplaceChange({
-                  ...replaceSettings,
                   includeFiles: !replaceSettings.includeFiles,
                 })
               }
@@ -155,7 +152,6 @@ export default function ReplaceSettingsForm({
               selected={replaceSettings.includeFolders}
               onChange={() =>
                 onReplaceChange({
-                  ...replaceSettings,
                   includeFolders: !replaceSettings.includeFolders,
                 })
               }
@@ -171,7 +167,6 @@ export default function ReplaceSettingsForm({
               selected={replaceSettings.includeSubfolders}
               onChange={() =>
                 onReplaceChange({
-                  ...replaceSettings,
                   includeSubfolders: !replaceSettings.includeSubfolders,
                 })
               }

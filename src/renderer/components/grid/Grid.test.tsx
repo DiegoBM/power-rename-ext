@@ -67,7 +67,7 @@ const testEntries: RenameEntry[] = [
 ];
 
 describe('Grid', () => {
-  it('should render an empty grid', () => {
+  test('renders an empty grid', () => {
     render(
       <Grid entries={[]} onRowSelectionChange={() => {}} rowSelection={{}} />
     );
@@ -77,7 +77,7 @@ describe('Grid', () => {
     expect(screen.queryByText(/no records to display/i)).toBeInTheDocument();
   });
 
-  it('should render as many rows as entries passed to the "entries" prop', () => {
+  test('renders as many rows as entries passed to the "entries" prop', () => {
     render(
       <Grid
         entries={testEntries}
@@ -90,7 +90,7 @@ describe('Grid', () => {
     expect(screen.queryAllByRole('row')).toHaveLength(7);
   });
 
-  it('should display the right number of total entries and entries to be renamed', () => {
+  test('displays the right number of total entries and entries to be renamed', () => {
     render(
       <Grid
         entries={testEntries}
@@ -103,7 +103,7 @@ describe('Grid', () => {
     expect(screen.queryByText(/renamed \(2\)/i)).toBeInTheDocument();
   });
 
-  it('should take the selection information from "rowSelection" prop', () => {
+  test('takes the selection information from "rowSelection" prop', () => {
     const { rerender } = render(
       <Grid
         entries={testEntries}
@@ -127,7 +127,7 @@ describe('Grid', () => {
     );
   });
 
-  it('should notify the parent when the user selects a row', async () => {
+  test('notifies the parent when the user selects a row', async () => {
     const handleRowSelectionChange = jest.fn();
 
     render(
@@ -145,7 +145,7 @@ describe('Grid', () => {
     expect(handleRowSelectionChange).toHaveBeenCalledTimes(1);
   });
 
-  it('should allow filtering to display only the entries that will be modified (and their containing folders)', async () => {
+  test('allows filtering to display only the entries that will be modified (and their containing folders)', async () => {
     render(
       <Grid
         entries={testEntries}

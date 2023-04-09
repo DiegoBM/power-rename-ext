@@ -3,7 +3,6 @@
 // https://github.com/facebook/react/issues/20003#issuecomment-806089507
 import '@mocks/window.mock';
 import { asMock } from '@mocks/utils';
-// asMock(window.electron.ipcRenderer.platform).mockReturnValueOnce('win32');
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { render, screen, fireEvent } from '@testing-library/react';
@@ -15,14 +14,14 @@ describe('TitleBar', () => {
     asMock(window.electron.ipcRenderer.sendMessage).mockReset();
   });
 
-  it('should render the title bar', () => {
+  test('renders the title bar', () => {
     render(<TitleBar />);
 
     expect(screen.queryByRole('img', { name: /logo/i })).toBeInTheDocument();
     expect(screen.queryByText(/PowerRenameExt/i)).toBeInTheDocument();
   });
 
-  it('should Communicate the main process about the change of color when the window loses focus', () => {
+  test('communicates the main process about the change of color when the window loses focus', () => {
     const sendMessage = asMock(window.electron.ipcRenderer.sendMessage);
     render(<TitleBar />);
 
@@ -49,7 +48,7 @@ describe('TitleBar', () => {
     );
   });
 
-  it('should Communicate the main process about the change of color when the theme changes', () => {
+  test('Communicates the main process about the change of color when the theme changes', () => {
     const sendMessage = asMock(window.electron.ipcRenderer.sendMessage);
     const light = createTheme({ palette: { mode: 'light' } });
     const dark = createTheme({ palette: { mode: 'dark' } });
@@ -75,35 +74,3 @@ describe('TitleBar', () => {
     );
   });
 });
-
-// function Wrapper({
-//   children,
-//   mode,
-// }: {
-//   children: ReactElement;
-//   mode: 'dark' | 'light';
-// }) {
-//   // function Wrapper(children: ReactElement): ReactElement<any, any> | null {
-//   const theme = createTheme({ palette: { mode } });
-//   return (
-//     <ApplicationSettingsProvider>
-//       <ThemeProvider theme={theme}>{children}</ThemeProvider>
-//     </ApplicationSettingsProvider>
-//   );
-// }
-
-// type PaletteMode = 'dark' | 'light';
-
-// function renderWrapped(mode: PaletteMode = 'light') {
-//   const Wrapper = ({ children }: { children: ReactNode }) => {
-//     const theme = createTheme({ palette: { mode } });
-
-//     return (
-//       <ApplicationSettingsProvider>
-//         <ThemeProvider theme={theme}>{children}</ThemeProvider>
-//       </ApplicationSettingsProvider>
-//     );
-//   };
-
-//   return render(<TitleBar />, { wrapper: Wrapper });
-// }

@@ -28,5 +28,10 @@ npm-debug.log.*
 *.sass.d.ts
 *.scss.d.ts
 
+# Playwright
+/test-results/
+/playwright-report/
+/playwright/.cache/
+
 # Environment variables and other secret files
 .env

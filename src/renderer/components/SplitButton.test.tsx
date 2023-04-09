@@ -9,7 +9,7 @@ const testOptions = [
 ];
 
 describe('SplitButton', () => {
-  it('should render a collapsed button by default', () => {
+  test('renders a collapsed button by default', () => {
     render(
       <SplitButton
         current={testOptions[0]}
@@ -27,7 +27,7 @@ describe('SplitButton', () => {
     ).not.toBeInTheDocument();
   });
 
-  it('should display the "current" options in the main button', () => {
+  test('displays the "current" options in the main button', () => {
     const { rerender } = render(
       <SplitButton
         current={testOptions[0]}
@@ -58,7 +58,7 @@ describe('SplitButton', () => {
     ).toBeInTheDocument();
   });
 
-  it('should expand the menu options upon clicking on the expander', async () => {
+  test('expands the menu options upon clicking on the expander', async () => {
     render(
       <SplitButton
         current={testOptions[0]}
@@ -75,7 +75,7 @@ describe('SplitButton', () => {
     ).toBeInTheDocument();
   });
 
-  it('should list all the options passed in the "options" prop', async () => {
+  test('lists all the options passed in the "options" prop', async () => {
     render(
       <SplitButton
         current={testOptions[0]}
@@ -95,7 +95,7 @@ describe('SplitButton', () => {
     );
   });
 
-  it('should action on the "current" option when the main button is clicked', async () => {
+  test('actions on the "current" option when the main button is clicked', async () => {
     const handleClick = jest.fn();
     render(
       <SplitButton
@@ -113,7 +113,7 @@ describe('SplitButton', () => {
     expect(handleClick).toHaveBeenCalledWith(testOptions[0]);
   });
 
-  it('should notify the selected option when one of the expandable options are clicked', async () => {
+  test('notifies the selected option when one of the expandable options are clicked', async () => {
     const handleOptionSelect = jest.fn();
     render(
       <SplitButton
@@ -132,7 +132,7 @@ describe('SplitButton', () => {
     expect(handleOptionSelect).toHaveBeenCalledWith(testOptions[1]);
   });
 
-  it('should not action on a newly selected option if clickOnSelect is false', async () => {
+  test('will not action on a newly selected option if clickOnSelect is false', async () => {
     const handleClick = jest.fn();
     render(
       <SplitButton
@@ -155,7 +155,7 @@ describe('SplitButton', () => {
     expect(handleClick).not.toHaveBeenCalled();
   });
 
-  it('should action on a newly selected option if clickOnSelect is false', async () => {
+  test('actions on a newly selected option if clickOnSelect is false', async () => {
     const handleClick = jest.fn();
     render(
       <SplitButton
@@ -178,7 +178,7 @@ describe('SplitButton', () => {
     expect(handleClick).toHaveBeenCalledWith(testOptions[1]);
   });
 
-  it('should disable the control', async () => {
+  test('disables the control', async () => {
     const handleClick = jest.fn();
     const { rerender } = render(
       <SplitButton

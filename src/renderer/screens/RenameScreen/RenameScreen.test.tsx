@@ -62,7 +62,7 @@ const testEntries: PathEntry[] = [
 ];
 
 describe('RenameScreen', () => {
-  it('should render the title bar, the settgins forms, the grid and the apply button', () => {
+  test('renders the title bar, the settgins forms, the grid and the apply button', () => {
     render(<RenameScreen />);
 
     expect(screen.queryByText(/PowerRenameExt/i)).toBeInTheDocument();
@@ -78,7 +78,7 @@ describe('RenameScreen', () => {
     ).toBeInTheDocument();
   });
 
-  it('should render the rows returned by the main process', () => {
+  test('renders the rows returned by the main process', () => {
     renderWithData(() => {
       expect(screen.queryByText(/no records to display/i)).toBeInTheDocument();
     });
@@ -87,7 +87,7 @@ describe('RenameScreen', () => {
     expect(screen.queryAllByRole('row')).toHaveLength(7);
   });
 
-  it('should disable the apply button until at least one row with a rename is checked', async () => {
+  test('will disable the apply button until at least one row with a rename is checked', async () => {
     renderWithData(() => {
       expect(
         screen.queryByRole('group', { name: /split button/i })
@@ -107,7 +107,7 @@ describe('RenameScreen', () => {
     ).toHaveAttribute('aria-disabled', 'false');
   });
 
-  it('should notify the main process with the entries to rename', async () => {
+  test('notifies the main process with the entries to rename', async () => {
     renderWithData(() => {
       expect(window.electron.ipcRenderer.sendMessage).not.toHaveBeenCalledWith(
         'ipc-communication',
@@ -134,7 +134,7 @@ describe('RenameScreen', () => {
     );
   });
 
-  it('should ignore files when the relevant option is unchecked', async () => {
+  test('ignores files when the relevant option is unchecked', async () => {
     renderWithData();
 
     await userEvent.type(screen.getByPlaceholderText(/search for/i), 'test2');
@@ -156,7 +156,7 @@ describe('RenameScreen', () => {
     });
   });
 
-  it('should ignore folders when the relevant option is unchecked', async () => {
+  test('ignores folders when the relevant option is unchecked', async () => {
     renderWithData();
 
     await userEvent.type(screen.getByPlaceholderText(/search for/i), 'folder');
@@ -178,7 +178,7 @@ describe('RenameScreen', () => {
     });
   });
 
-  it('should ignore files in subfolders when the relevant option is unchecked', async () => {
+  test('ignores files in subfolders when the relevant option is unchecked', async () => {
     renderWithData();
 
     await userEvent.type(screen.getByPlaceholderText(/search for/i), 'test4');
@@ -200,7 +200,7 @@ describe('RenameScreen', () => {
     });
   });
 
-  it('should apply the transformation both to the filename and the extension when the default option is selected', async () => {
+  test('applies the transformation both to the filename and the extension when the default option is selected', async () => {
     renderWithData();
 
     // Filename + extension is the default option
@@ -210,7 +210,7 @@ describe('RenameScreen', () => {
     });
   });
 
-  it('should apply the transformation to the filename only when the relevant option is selected', async () => {
+  test('applies the transformation to the filename only when the relevant option is selected', async () => {
     renderWithData();
 
     await prepareRename('test', 'te_st');
@@ -226,7 +226,7 @@ describe('RenameScreen', () => {
     });
   });
 
-  it('should apply the transformation to the extension only when the relevant option is selected', async () => {
+  test('applies the transformation to the extension only when the relevant option is selected', async () => {
     renderWithData();
 
     await prepareRename('test', 'te_st');
@@ -242,7 +242,7 @@ describe('RenameScreen', () => {
     });
   });
 
-  it('should display the errors dialog when the some of the renames fail', async () => {
+  test('displays the errors dialog when the some of the renames fail', async () => {
     let handler: (message: IPCRendererMessage) => void;
     asMock(window.electron.ipcRenderer.on).mockImplementation((_, fn) => {
       handler = fn;

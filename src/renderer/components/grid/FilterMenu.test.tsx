@@ -9,7 +9,7 @@ const testFilters: Filter[] = [
 ];
 
 describe('FilterMenu', () => {
-  it('should render initially in a collapsed state', () => {
+  test('renders initially in a collapsed state', () => {
     render(
       <FilterMenu
         filters={testFilters}
@@ -20,7 +20,7 @@ describe('FilterMenu', () => {
     expect(screen.queryByText(testFilters[0].label)).not.toBeInTheDocument();
   });
 
-  it('should display a menu with two items once clicked', async () => {
+  test('displays a menu with two items once clicked', async () => {
     render(
       <FilterMenu
         filters={testFilters}
@@ -36,7 +36,7 @@ describe('FilterMenu', () => {
     });
   });
 
-  it('should retrurn the value given to each option menu', async () => {
+  test('retrurns the value given to each option menu', async () => {
     const handleClick = jest.fn();
 
     render(
