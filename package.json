@@ -13,7 +13,14 @@
     "sass",
     "webpack",
     "hot",
-    "reload"
+    "reload",
+    "cross-platform",
+    "filesystem",
+    "rename",
+    "bulk-rename",
+    "rename-files",
+    "regular-expressions",
+    "functions"
   ],
   "homepage": "https://github.com/DiegoBM/power-rename-ext#readme",
   "bugs": {
