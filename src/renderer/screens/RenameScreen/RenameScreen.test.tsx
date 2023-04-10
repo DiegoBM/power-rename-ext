@@ -122,14 +122,17 @@ describe('RenameScreen', () => {
       'ipc-communication',
       {
         type: 'process-renames',
-        payload: [
-          {
-            isDirectory: false,
-            basePath: '/',
-            from: 'test2.test',
-            to: 'test_2.test',
-          },
-        ],
+        payload: {
+          renames: [
+            {
+              isDirectory: false,
+              basePath: '/',
+              from: 'test2.test',
+              to: 'test_2.test',
+            },
+          ],
+          options: { exit: false },
+        },
       }
     );
   });

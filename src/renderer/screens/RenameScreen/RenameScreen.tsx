@@ -72,7 +72,9 @@ export default function RenameScreen() {
     const operations = computeRenameOperations(entries, rowSelection);
 
     window.electron.ipcRenderer.sendMessage(
-      ...processRenamesMessage(operations)
+      ...processRenamesMessage(operations, {
+        exit: option.value === 'apply-and-close',
+      })
     );
     // TODO: implement apply and close
   };

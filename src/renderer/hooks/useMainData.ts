@@ -65,7 +65,6 @@ export function useMainData(): [MainData, Dispatch<SetStateAction<MainData>>] {
             );
             break;
           case 'main-error':
-            alert(message.payload);
             setMainData({
               ...mainData,
               error: message.payload,

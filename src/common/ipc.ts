@@ -47,11 +47,15 @@ export type WindowAction =
   | { type: 'change-color'; icons?: string; background?: string }
   | { type: 'close' };
 
+type ProcessRenamesOptions = {
+  exit?: boolean;
+};
+
 type IPCScanPaths = { type: 'scan-paths'; payload: string[] };
 type IPCScanResults = { type: 'scan-results'; payload: ScanResults };
 type IPCProcessRenames = {
   type: 'process-renames';
-  payload: RenameOperation[];
+  payload: { renames: RenameOperation[]; options: ProcessRenamesOptions };
 };
 type IPCRenameResults = { type: 'rename-results'; payload: RenameResults };
 type IPCRendererReady = { type: 'renderer-ready' };
@@ -102,11 +106,12 @@ export function scanResultsMessage(
 }
 
 export function processRenamesMessage(
-  renames: RenameOperation[]
+  renames: RenameOperation[],
+  options: ProcessRenamesOptions
 ): Channel<IPCProcessRenames> {
   return channel<IPCProcessRenames>({
     type: 'process-renames',
-    payload: renames,
+    payload: { renames, options },
   });
 }
 

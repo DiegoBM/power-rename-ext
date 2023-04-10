@@ -89,8 +89,13 @@ ipcMain.on('ipc-communication', async (event, message: IPCMainMessage) => {
       break;
     case 'process-renames':
       try {
-        const results = await processRenameOperations(message.payload);
-        event.reply(...renameResultsMessage(results));
+        const results = await processRenameOperations(message.payload.renames);
+
+        if (results.success && message.payload.options.exit) {
+          app.quit();
+        } else {
+          event.reply(...renameResultsMessage(results));
+        }
       } catch (error) {
         event.reply(...mainErrorMessage((error as Error).message));
       }
