@@ -11,7 +11,7 @@ import FunctionEditorDialog from '@components/functions/FunctionEditorDialog';
 
 // import './SearchSettingsForm.css';
 
-const defaultFunction = `function (search) {\n  return 'replace';\n}`;
+const defaultFunction = `function (search) {\n  // Return a string\n  return 'replace';\n}`;
 
 export type SearchSettings = {
   input: string;

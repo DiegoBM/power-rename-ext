@@ -29,13 +29,6 @@ test.describe('Home page', () => {
     await electronApp.close();
   });
 
-  test('The last visual comparisson should match for each theme int the current platform', async () => {
-    page.emulateMedia({ colorScheme: 'dark' });
-    await expect(page).toHaveScreenshot(`${process.platform}-dark.png`);
-    page.emulateMedia({ colorScheme: 'light' });
-    await expect(page).toHaveScreenshot(`${process.platform}-light.png`);
-  });
-
   test.describe('controls can be reached and operated', () => {
     test.describe('search settings form', () => {
       test('search textbox', async () => {

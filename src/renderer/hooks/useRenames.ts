@@ -82,6 +82,12 @@ function calculateRenames(
             searchSettings.input ?? 's => s',
             createContext(entry, renameStats)
           )(entry.base);
+          
+          // If the user is being naughty trying to return a non-string value,
+          // then ignore it and send back the empty string
+          if (typeof computedRename !== 'string') {
+            computedRename = '';
+          }
 
           if (computedRename !== entry.base) {
             newRenameEntry.rename = computedRename;

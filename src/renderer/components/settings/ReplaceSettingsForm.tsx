@@ -27,7 +27,7 @@ const IncludeSubfoldersIcon = createSvgIcon(
 
 import { useDebounceValue } from '@hooks/useDebounceValue';
 
-const defaultFunction = 'function (...args) {\n  return args[0];\n}';
+const defaultFunction = 'function (...args) {\n  // Return a string\n  return args[0];\n}';
 
 type FormatType = 'lowercase' | 'uppercase' | 'titlecase' | 'capitalize' | null;
 type Scope = 'base' | 'name' | 'ext';

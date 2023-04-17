@@ -198,6 +198,7 @@ describe('SearchSettingsForm', () => {
     );
 
     const defaultFunction = `function (search) {
+  // Return a string
   return 'replace';
 }`;
 

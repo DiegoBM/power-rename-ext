@@ -214,6 +214,7 @@ describe('ReplaceSettingsForm', () => {
     );
 
     const defaultFunction = `function (...args) {
+  // Return a string
   return args[0];
 }`;
 
