@@ -48,7 +48,7 @@ Once built and packaged, the final executable will accept a list of space-separa
 
 On Windows, if you install from the installer available in the `releases` section, then you can also open one file or folder (recursively) using the file explorer's context menu integration, by right-clicking on the desired file or folder and choosing the option _"Open with PowerRenameExt"_.
 
-Note than on `Windows 11`, you'll need to select the _"Show more options"_ option first.
+Note than on `Windows 11`, you'll need to select the _"Show more options"_ option first. Also make sure to run the installer as Administrator.
 
 ## Setup for development
 
