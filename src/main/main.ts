@@ -81,7 +81,8 @@ ipcMain.on('ipc-communication', async (event, message: IPCMainMessage) => {
         event.reply(...initialArgumentsMessage(testPaths));
       } else if (process.argv.length > 1) {
         const [cmd, ...paths] = process.argv;
-        event.reply(...initialArgumentsMessage(paths));
+        event.reply(...initialArgumentsMessage(paths
+          .filter(p => !p.startsWith('-'))));
       }
       break;
     case 'scan-paths':
